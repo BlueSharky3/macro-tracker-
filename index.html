@@ -86,10 +86,20 @@
             <p class="eyebrow">Daily tracker</p>
             <h2 id="day-title">Daily calorie and macro total</h2>
           </div>
-          <button id="reset-day" class="secondary-button" type="button">Reset day</button>
+          <form id="finish-day-form" class="finish-day-form">
+            <label for="finish-date">Date</label>
+            <input id="finish-date" name="finishDate" type="date" required />
+            <button class="secondary-button" type="submit">Finish day</button>
+          </form>
         </div>
 
         <div class="daily-total-grid" id="daily-total-grid"></div>
+
+        <div class="daily-micronutrients">
+          <h3>Vitamins and minerals vs FDA Daily Value</h3>
+          <p id="daily-value-empty" class="log-empty">Add foods with vitamins or minerals to compare against Daily Values.</p>
+          <ul id="daily-value-list" class="daily-value-list"></ul>
+        </div>
 
         <div class="food-log">
           <h3>Foods added</h3>
@@ -124,26 +134,39 @@
           </div>
 
           <div class="field">
-            <label for="custom-calories">Calories per 100g</label>
+            <label for="custom-serving-weight">Serving weight in grams</label>
+            <input id="custom-serving-weight" name="servingWeight" type="number" min="1" step="0.1" value="100" required />
+          </div>
+
+          <div class="field">
+            <label for="custom-calories">Calories for that weight</label>
             <input id="custom-calories" name="calories" type="number" min="0" step="0.1" required />
           </div>
 
           <div class="field">
-            <label for="custom-protein">Protein per 100g</label>
+            <label for="custom-protein">Protein for that weight</label>
             <input id="custom-protein" name="protein" type="number" min="0" step="0.1" required />
           </div>
 
           <div class="field">
-            <label for="custom-carbs">Carbs per 100g</label>
+            <label for="custom-carbs">Carbs for that weight</label>
             <input id="custom-carbs" name="carbs" type="number" min="0" step="0.1" required />
           </div>
 
           <div class="field">
-            <label for="custom-fat">Oil / fat per 100g</label>
+            <label for="custom-fat">Oil / fat for that weight</label>
             <input id="custom-fat" name="fat" type="number" min="0" step="0.1" required />
           </div>
 
-          <button type="submit">Save food</button>
+          <div class="custom-nutrients">
+            <div class="custom-nutrient-header">
+              <h3>Vitamins and minerals</h3>
+              <button id="add-custom-nutrient" class="secondary-button" type="button">Add nutrient</button>
+            </div>
+            <div id="custom-nutrient-fields" class="custom-nutrient-fields"></div>
+          </div>
+
+          <button class="save-custom-food" type="submit">Save food</button>
         </form>
 
         <div class="custom-foods">
