@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#167a62" />
+    <title>Nutrition Calculator</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel entry-panel" aria-labelledby="app-title">
+        <div>
+          <p class="eyebrow">Food nutrition calculator</p>
+          <h1 id="app-title">Check nutrients by gram weight</h1>
+        </div>
+
+        <form id="nutrition-form" class="nutrition-form">
+          <label for="food-input">Food</label>
+          <input
+            id="food-input"
+            name="food"
+            type="text"
+            list="food-options"
+            autocomplete="off"
+            placeholder="Try chicken breast, rice, avocado..."
+            required
+          />
+          <datalist id="food-options"></datalist>
+
+          <label for="weight-input">Weight in grams</label>
+          <input
+            id="weight-input"
+            name="weight"
+            type="number"
+            min="1"
+            max="5000"
+            step="1"
+            value="100"
+            required
+          />
+
+          <button type="submit">Calculate</button>
+        </form>
+
+        <div class="quick-picks" id="quick-picks" aria-label="Common foods"></div>
+      </section>
+
+      <section class="panel results-panel" aria-live="polite">
+        <div id="empty-state" class="empty-state">
+          <span class="empty-icon">+</span>
+          <p>Enter a food and gram weight to see estimated calories, macros, oil/fat, and key nutrients.</p>
+        </div>
+
+        <div id="results" class="results hidden">
+          <div class="result-header">
+            <div>
+              <p id="result-food" class="result-food"></p>
+              <h2 id="result-summary"></h2>
+            </div>
+            <span id="match-label" class="match-label"></span>
+          </div>
+
+          <div class="macro-grid" id="macro-grid"></div>
+
+          <button id="add-to-day" class="add-to-day" type="button">Add to daily total</button>
+
+          <div class="details-grid">
+            <div>
+              <h3>Nutrients</h3>
+              <ul id="nutrient-list" class="nutrient-list"></ul>
+            </div>
+            <div>
+              <h3>Notes</h3>
+              <p id="food-notes" class="food-notes"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel day-panel" aria-labelledby="day-title">
+        <div class="day-header">
+          <div>
+            <p class="eyebrow">Daily tracker</p>
+            <h2 id="day-title">Daily calorie and macro total</h2>
+          </div>
+          <button id="reset-day" class="secondary-button" type="button">Reset day</button>
+        </div>
+
+        <div class="daily-total-grid" id="daily-total-grid"></div>
+
+        <div class="food-log">
+          <h3>Foods added</h3>
+          <p id="log-empty" class="log-empty">No foods added yet.</p>
+          <ul id="food-log-list" class="food-log-list"></ul>
+        </div>
+      </section>
+
+      <section class="panel history-panel" aria-labelledby="history-title">
+        <div class="day-header">
+          <div>
+            <p class="eyebrow">History</p>
+            <h2 id="history-title">Daily macro history</h2>
+          </div>
+          <button id="clear-history" class="secondary-button" type="button">Clear history</button>
+        </div>
+
+        <p id="history-empty" class="log-empty">No saved daily history yet.</p>
+        <ul id="history-list" class="history-list"></ul>
+      </section>
+
+      <section class="panel custom-panel" aria-labelledby="custom-title">
+        <div>
+          <p class="eyebrow">Custom foods</p>
+          <h2 id="custom-title">Add your own food</h2>
+        </div>
+
+        <form id="custom-food-form" class="custom-food-form">
+          <div class="field">
+            <label for="custom-name">Food name</label>
+            <input id="custom-name" name="name" type="text" placeholder="Homemade smoothie" required />
+          </div>
+
+          <div class="field">
+            <label for="custom-calories">Calories per 100g</label>
+            <input id="custom-calories" name="calories" type="number" min="0" step="0.1" required />
+          </div>
+
+          <div class="field">
+            <label for="custom-protein">Protein per 100g</label>
+            <input id="custom-protein" name="protein" type="number" min="0" step="0.1" required />
+          </div>
+
+          <div class="field">
+            <label for="custom-carbs">Carbs per 100g</label>
+            <input id="custom-carbs" name="carbs" type="number" min="0" step="0.1" required />
+          </div>
+
+          <div class="field">
+            <label for="custom-fat">Oil / fat per 100g</label>
+            <input id="custom-fat" name="fat" type="number" min="0" step="0.1" required />
+          </div>
+
+          <button type="submit">Save food</button>
+        </form>
+
+        <div class="custom-foods">
+          <h3>Saved custom foods</h3>
+          <p id="custom-empty" class="log-empty">No custom foods saved yet.</p>
+          <ul id="custom-food-list" class="food-log-list"></ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
