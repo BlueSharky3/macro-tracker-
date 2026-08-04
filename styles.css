@@ -132,6 +132,13 @@ select:focus {
   box-shadow: 0 0 0 4px rgba(22, 122, 98, 0.13);
 }
 
+input:disabled,
+select:disabled {
+  background: #eef1ec;
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
 button {
   min-height: 50px;
   margin-top: 8px;
@@ -169,6 +176,13 @@ button:hover {
   margin-top: 22px;
 }
 
+.search-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
 .quick-picks button {
   min-height: 34px;
   margin: 0;
@@ -179,9 +193,25 @@ button:hover {
   font-size: 0.86rem;
 }
 
+.search-suggestions button {
+  min-height: 34px;
+  margin: 0;
+  padding: 0 12px;
+  border: 1px solid rgba(77, 114, 184, 0.32);
+  background: #f6f8fd;
+  color: #2d4c86;
+  font-size: 0.86rem;
+}
+
 .quick-picks button:hover {
   border-color: var(--accent);
   color: var(--accent-strong);
+}
+
+.search-suggestions button:hover {
+  border-color: var(--blue);
+  background: #eef3ff;
+  color: #213a6b;
 }
 
 .results-panel {
@@ -267,6 +297,31 @@ button:hover {
   margin: 0 0 22px;
   padding-top: 18px;
   border-top: 1px solid var(--line);
+}
+
+.nutrition-warnings {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 22px;
+}
+
+.warning-card {
+  padding: 12px;
+  border: 1px solid #ead7a8;
+  border-radius: 8px;
+  background: #fffaf0;
+}
+
+.warning-card strong,
+.warning-card span {
+  display: block;
+}
+
+.warning-card span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .macro-card {
@@ -402,7 +457,8 @@ h3 {
 }
 
 .custom-nutrients,
-.save-custom-food {
+.save-custom-food,
+#cancel-custom-edit {
   grid-column: 1 / -1;
 }
 
@@ -448,6 +504,34 @@ h3 {
   list-style: none;
 }
 
+.meal-group {
+  display: grid;
+  gap: 10px;
+}
+
+.meal-group-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.meal-group-header span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.meal-food-list,
+.history-food-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .food-log-item {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -460,18 +544,58 @@ h3 {
 }
 
 .custom-food-item {
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
 }
 
 .history-item {
-  display: grid;
-  grid-template-columns: minmax(150px, 0.9fr) minmax(0, 2.1fr);
-  gap: 14px;
-  align-items: center;
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fbfcfa;
+}
+
+.history-item details {
+  display: grid;
+  gap: 12px;
+}
+
+.history-item summary {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.9fr) minmax(0, 2.1fr);
+  gap: 14px;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+}
+
+.history-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.history-detail {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.history-meal {
+  display: grid;
+  gap: 8px;
+}
+
+.history-food-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  background: white;
+}
+
+.history-food-list span {
+  color: var(--muted);
 }
 
 .history-date strong,
@@ -626,6 +750,7 @@ h3 {
 
   .macro-grid,
   .daily-total-grid,
+  .nutrition-warnings,
   .details-grid,
   .custom-food-form,
   .custom-nutrient-row {
@@ -636,7 +761,9 @@ h3 {
   .day-header,
   .food-log-item,
   .custom-food-item,
-  .history-item {
+  .history-item summary,
+  .meal-group-header,
+  .history-food-list li {
     display: grid;
   }
 

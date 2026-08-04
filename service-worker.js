@@ -1,4 +1,4 @@
-const CACHE_NAME = "nutrition-macro-tracker-v5";
+const CACHE_NAME = "nutrition-macro-tracker-v8";
 const APP_FILES = [
   "./",
   "./index.html",
