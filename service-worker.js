@@ -1,4 +1,4 @@
-const CACHE_NAME = "nutrition-macro-tracker-v8";
+const CACHE_NAME = "nutrition-macro-tracker-v9";
 const APP_FILES = [
   "./",
   "./index.html",
@@ -6,6 +6,10 @@ const APP_FILES = [
   "./app.js",
   "./manifest.webmanifest",
   "./icon.svg",
+  "./icon-192.png",
+  "./icon-512.png",
+  "./icon-maskable-512.png",
+  "./apple-touch-icon.png",
 ];
 
 self.addEventListener("install", (event) => {
